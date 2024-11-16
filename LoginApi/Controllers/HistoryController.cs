@@ -15,11 +15,14 @@ namespace LoginApi.Controllers
             _historyService = historyService;
         }
 
-        // Get payment history by user ID
         [HttpGet("payment/{userId}")]
         public IActionResult GetPaymentHistory(int userId)
         {
             var history = _historyService.GetPaymentHistory(userId);
+            if (history == null )
+            {
+                return NotFound($"No payment history found for UserId: {userId}");
+            }
             return Ok(history);
         }
 
@@ -27,8 +30,12 @@ namespace LoginApi.Controllers
         [HttpPost("payment")]
         public IActionResult AddPaymentHistory([FromBody] PaymentHistory payment)
         {
-            _historyService.AddPaymentHistory(payment);
-            return Ok();
+            var success = _historyService.AddPaymentHistory(payment);
+            if (!success)
+            {
+                return NotFound($"UserId: {payment.UserId} is not valid for adding payment history.");
+            }
+            return Ok(new { Message = "Payment history added successfully.", PaymentId = payment.PaymentId });
         }
 
         // Get print history by user ID
@@ -36,6 +43,10 @@ namespace LoginApi.Controllers
         public IActionResult GetPrintHistory(int userId)
         {
             var history = _historyService.GetPrintHistory(userId);
+            if (history == null)
+            {
+                return NotFound($"No print history found for UserId: {userId}");
+            }
             return Ok(history);
         }
 
@@ -43,8 +54,12 @@ namespace LoginApi.Controllers
         [HttpPost("print")]
         public IActionResult AddPrintHistory([FromBody] PrintHistory print)
         {
-            _historyService.AddPrintHistory(print);
-            return Ok();
+            var success = _historyService.AddPrintHistory(print);
+            if (!success)
+            {
+                return NotFound($"UserId: {print.UserId} is not valid for adding print history.");
+            }
+            return Ok(new { Message = "Print history added successfully.", PrintId = print.PrintId });
         }
     }
 

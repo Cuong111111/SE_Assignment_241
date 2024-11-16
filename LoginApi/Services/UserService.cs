@@ -72,25 +72,6 @@ namespace LoginApi.Services
             return null;
         }
 
-        // Lấy số dư trang của người dùng
-        public int GetUserPageBalance(string email)
-        {
-            var user = GetUserByEmail(email);
-            return user?.Page_balance ?? 0;
-        }
-
-        // Cập nhật số dư trang của người dùng
-        public void UpdateUserPageBalance(string email, int newBalance)
-        {
-            var users = GetUsers();
-            var user = users.Find(u => u.Email == email);
-            if (user != null)
-            {
-                user.Page_balance = newBalance;
-                _cache.Set(UserCacheKey, users); // Lưu lại vào cache sau khi cập nhật
-            }
-        }
-
         // Phương thức để lấy tất cả người dùng từ cache
         private List<User> GetUsers()
         {

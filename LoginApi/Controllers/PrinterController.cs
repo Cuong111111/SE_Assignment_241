@@ -34,10 +34,10 @@ namespace LoginApi.Controllers
         }
 
         [HttpGet("{printerId}")]
-        public IActionResult GetPrinterById(int printerID){
-            var printer = _printerService.GetPrinterById(printerID);
+        public IActionResult GetPrinterById(int printerId){
+            var printer = _printerService.GetPrinterById(printerId);
             if(printer == null) 
-                return NotFound($"Printer with ID {printerID} not found.");
+                return NotFound($"Printer with ID {printerId} not found.");
             return Ok(printer);
         }
         

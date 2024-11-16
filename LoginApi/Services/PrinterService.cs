@@ -57,7 +57,7 @@ namespace LoginApi.Services
         public void AddPrinter(Printer printer)
         {
             var printers = GetPrinters();
-            printer.Id = printers.Max(p => p.Id) + 1; 
+            printer.Id = printers.Any() ? printers.Max(p => p.Id) + 1 : 1; 
             printers.Add(printer);
             _cache.Set(PrintersCacheKey, printers);
         }

@@ -22,6 +22,7 @@ namespace LoginApi
             services.AddSingleton<UserService>();
             services.AddSingleton<SystemConfigService>();
             services.AddSingleton<PrinterService>();
+            services.AddSingleton<HistoryService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
