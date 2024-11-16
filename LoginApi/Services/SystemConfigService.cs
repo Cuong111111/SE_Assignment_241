@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
+using LoginApi.Models;
 
 namespace LoginApi.Services
 {
@@ -40,12 +41,5 @@ namespace LoginApi.Services
         {
             _cache.Set(SystemConfigCacheKey, config);
         }
-    }
-
-    public class SystemConfig
-    {
-        public List<string> AllowedFileFormats { get; set; }
-        public int DefaultPrintPageLimit { get; set; }
-        public DateTime IssueDate { get; set; }
-    }
+    }    
 }

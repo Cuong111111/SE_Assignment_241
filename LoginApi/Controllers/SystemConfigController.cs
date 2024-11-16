@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using LoginApi.Services;
+using LoginApi.Models;
 
 namespace LoginApi.Controllers
 {
