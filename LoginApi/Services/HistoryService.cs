@@ -81,6 +81,13 @@ namespace LoginApi.Services
             }
             return new List<PrintHistory>();
         }
+        
+        public List<PrintHistory> GetAllPrintHistory()
+        {
+            if (_cache.TryGetValue(PrintHistoryCacheKey, out List<PrintHistory> printHistory))
+                return printHistory;
+            return new List<PrintHistory>(); 
+        }
     }
     
 }
