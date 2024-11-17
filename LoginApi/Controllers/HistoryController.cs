@@ -73,6 +73,16 @@ namespace LoginApi.Controllers
             return Ok(history);
 
         }
+        [HttpGet("print/month")]
+        public IActionResult GetPrintHistoryByMonth([FromQuery] int year, [FromQuery] int month)
+        {
+            var history = _historyService.GetPrintHistoryByMonth(year, month);
+            if (history == null || history.Count == 0)
+            {
+                return NotFound($"No print history found for {month:00}-{year}.");
+            }
+        return Ok(history);
+        }
     }
 
 }
