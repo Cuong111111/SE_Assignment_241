@@ -61,6 +61,18 @@ namespace LoginApi.Controllers
             }
             return Ok(new { Message = "Print history added successfully.", PrintId = print.PrintId });
         }
+        
+        [HttpGet("allprint")]
+        public IActionResult GetAllPrintHistory()
+        {
+            var history = _historyService.GetAllPrintHistory();
+            if (history == null)
+            {
+                return NotFound("No print history found.");
+            }
+            return Ok(history);
+
+        }
     }
 
 }
