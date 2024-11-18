@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page - HCMUT SPSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+        .left-section {
+            background-color: #007bff;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .left-section img {
+            width: 150px;
+        }
+        .right-section {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .login-form {
+            width: 300px;
+            text-align: center;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            fetch('api/User_info/login', {  // Adjusting the URL to match the backend endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ Email: email, Password: password })
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Invalid login credentials');
+                }
+            })
+            .then(data => {
+                // Storing user data in local storage or session storage
+                localStorage.setItem('user', JSON.stringify(data.user));
+                // Redirect to main page after successful login
+                window.location.href = 'index.html';
+            })
+            .catch(error => {
+                document.getElementById('error-message').innerText = error.message;
+                document.getElementById('error-message').style.display = 'block';
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="left-section">
+        <img src="logo.png" alt="BK TPHCM Logo">
+    </div>
+    <div class="right-section">
+        <div class="login-form">
+            <h2>Đăng nhập</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="email" id="email" placeholder="example@hcmut.edu.vn" required>
+                <input type="password" id="password" placeholder="Mật khẩu" required>
+                <button type="submit">Xác nhận</button>
+            </form>
+            <div id="error-message" class="error-message" style="display: none;">
+                Tài khoản không tồn tại hoặc mật khẩu không hợp lệ.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

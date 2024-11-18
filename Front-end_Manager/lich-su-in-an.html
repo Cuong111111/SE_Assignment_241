@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch sử in ấn sinh viên - HCMUT SPSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f0ff;
+            text-align: center;
+        }
+        .container {
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 800px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .header img {
+            height: 50px;
+        }
+        .header div {
+            display: flex;
+            align-items: center;
+        }
+        .header div button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+        .section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            margin-bottom: 10px;
+        }
+        .section table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .section table, .section th, .section td {
+            border: 1px solid #ddd;
+        }
+        .section th, .section td {
+            padding: 8px;
+            text-align: left;
+        }
+        .section tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('api/printHistory')  // Modify the URL as needed to match your backend endpoint
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('printHistoryTableBody');
+                    data.forEach(item => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${item.studentName}</td>
+                            <td>${item.studentId}</td>
+                            <td>${item.printDate}</td>
+                            <td>${item.pagesPrinted}</td>
+                            <td>${item.status}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching print history:', error));
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="HCMUT Logo">
+            <div>
+                <span>Quản lý A</span>
+                <button>Đăng xuất</button>
+            </div>
+        </div>
+        <h1>Lịch sử in ấn sinh viên</h1>
+        <div class="section">
+            <h2>Danh sách lịch sử in ấn</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên sinh viên</th>
+                        <th>Mã số sinh viên</th>
+                        <th>Thời gian</th>
+                        <th>Số trang in</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody id="printHistoryTableBody">
+                    <!-- Rows will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            &copy; 2024 HCMUT Student Smart Printing Service. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
