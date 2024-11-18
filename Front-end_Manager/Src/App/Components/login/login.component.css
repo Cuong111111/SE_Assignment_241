@@ -1,0 +1,84 @@
+.container {
+  background-color: #1771af;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+/* Main container */
+.login-container {
+  display: flex;
+  width: 100vh;
+  height: 70vh;
+  box-shadow: 30px 30px #125583;
+}
+
+/* Left panel with logo */
+.left-panel {
+  width: 50%;
+  background-color: #0499ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+/* Right panel with login form */
+.right-panel {
+  width: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  width: 70%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.printer-icon {
+  width: 80px; /* Adjust size of printer icon */
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0078d7;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
