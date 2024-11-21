@@ -88,10 +88,10 @@ namespace LoginApi.Services
                 return printHistory;
             return new List<PrintHistory>(); 
         }
-        public List<PrintHistory> GetPrintHistoryByMonth(int year, int month)
+         public List<PrintHistory> GetPrintHistoryByFilter(int year, int month, int day)
         {
             if (_cache.TryGetValue(PrintHistoryCacheKey, out List<PrintHistory> printHistory))
-                return printHistory.Where(ph => ph.PrintDate.Year == year && ph.PrintDate.Month == month).ToList();
+                return printHistory.Where(ph => ph.PrintDate.Year == year && ph.PrintDate.Month == month && ph.PrintDate.Day == day).ToList();
     
             return new List<PrintHistory>();
         }
