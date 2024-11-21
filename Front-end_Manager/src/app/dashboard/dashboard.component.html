@@ -16,14 +16,14 @@
           <tr>
             <th>Date</th>
             <th>Pages Printed</th>
-            <th>Status</th>
+            <th>Printer ID</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let history of printHistory">
-            <td>{{ history.date }}</td>
-            <td>{{ history.pages }}</td>
-            <td>{{ history.status }}</td>
+            <td>{{ history.printDate }}</td>
+            <td>{{ history.pagesPrinted }}</td>
+            <td>{{ history.printerId }}</td>
           </tr>
         </tbody>
       </table>

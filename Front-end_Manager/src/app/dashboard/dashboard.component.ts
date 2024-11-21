@@ -50,9 +50,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   fetchPageBalance(): void {
     if (this.user) {
-      const url = `/User_info/${this.user.id}/pagebalance`;
-      this.http.get<{ balance: number }>(url).subscribe({
-        next: (response) => (this.pageBalance = response.balance),
+      const url = `http://localhost:5057/api/User_info/${this.user.id}/pagebalance`;
+      console.log(url);
+      this.http.get<{ pageBalance: number }>(url).subscribe({
+        next: (response) => (
+          console.log('Fetch successful:', response),
+          this.pageBalance = response.pageBalance
+          ),
         error: (err) => console.error('Lỗi khi lấy số dư:', err),
       });
     }
@@ -60,9 +64,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   fetchPrintHistory(): void {
     if (this.user) {
-      const url = `/api/history/print/${this.user.id}`;
+      const url = `http://localhost:5057/api/history/print/${this.user.id}`;
       this.http.get<any[]>(url).subscribe({
-        next: (response) => (this.printHistory = response),
+        next: (response) => (
+          console.log('Fetch successful:', response),
+          this.printHistory = response,
+          console.log(this.printHistory)),
         error: (err) => console.error('Lỗi khi lấy lịch sử in ấn:', err),
       });
     }
