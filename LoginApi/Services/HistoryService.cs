@@ -95,6 +95,40 @@ namespace LoginApi.Services
     
             return new List<PrintHistory>();
         }
+        
+        public MonthlyReport GetMonthlyReport(int year, int month)
+        {
+            var printHistory = _cache.TryGetValue(PrintHistoryCacheKey, out List<PrintHistory> printData)
+            ? printData.Where(ph => ph.PrintDate.Year == year && ph.PrintDate.Month == month).ToList()
+            : new List<PrintHistory>();
+
+            var paymentHistory = _cache.TryGetValue(PaymentHistoryCacheKey, out List<PaymentHistory> paymentData)
+            ? paymentData.Where(ph => ph.PaymentDate.Year == year && ph.PaymentDate.Month == month).ToList()
+            : new List<PaymentHistory>();
+
+    
+            var printerSummary = printHistory
+            .GroupBy(ph => ph.PrinterId)
+            .Select(group => new PrinterReport
+            {
+                PrinterId = group.Key,
+                PagesPrinted = group.Sum(ph => ph.PagesPrinted)
+            }).ToList();
+
+            decimal totalPayments = paymentHistory.Sum(ph => ph.Amount); //total payment for month
+
+            if (printerSummary.Count == 0 && totalPayments == 0)
+        
+                return null;
+
+            return new MonthlyReport
+            {
+            Year = year,
+            Month = month,
+            PrinterReports = printerSummary,
+            TotalPayments = totalPayments
+            };
+        }
     }
     
 }
