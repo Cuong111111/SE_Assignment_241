@@ -74,12 +74,12 @@ namespace LoginApi.Controllers
 
         }
         [HttpGet("print/month")]
-        public IActionResult GetPrintHistoryByMonth([FromQuery] int year, [FromQuery] int month)
+        public IActionResult GetPrintHistoryByFilter([FromQuery] int year, [FromQuery] int month, [FromQuery]int day)
         {
-            var history = _historyService.GetPrintHistoryByMonth(year, month);
+            var history = _historyService.GetPrintHistoryByFilter(year, month,day);
             if (history == null || history.Count == 0)
             {
-                return NotFound($"No print history found for {month:00}-{year}.");
+                return NotFound($"No print history found for {day:00}-{month:00}-{year}.");
             }
         return Ok(history);
         }
