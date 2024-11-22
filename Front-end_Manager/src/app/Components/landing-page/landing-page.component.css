@@ -1,10 +1,11 @@
 /* General styling */
-.container {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
   background-color: #dfecfe;
-  text-align: center;
+  font-family: Arial, sans-serif;
 }
 
 /* Header */
@@ -14,19 +15,32 @@
   align-items: center;
   margin-bottom: 20px;
   background-color: #ffffff;
-  height: 60px;
+  height: 4rem;
+  padding: 10px;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 .logo {
-  width: 100px;
+  margin-left: 20px;
+  width: 4rem;
 }
 
 .login-btn {
+  margin-right: 30px;
   background-color: #000;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-size: 1.5em;
   cursor: pointer;
 }
 
@@ -37,15 +51,21 @@
 /* Main Content */
 .content h1 {
   color: #0a0a0a;
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .content p {
   color: #333;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   line-height: 1.6;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .instructions {
@@ -57,14 +77,16 @@
 
 .instructions h2 {
   text-align: left;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin-bottom: 20px;
+  padding-left: 30px;
 }
 
 .instructions ol {
   text-align: left;
-  padding-left: 20px;
+  padding-left: 50px;
   line-height: 1.8;
+  font-size: 1.2rem;
 }
 
 /* Footer */
@@ -72,9 +94,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 250px;
+  margin-top: 2rem;
   font-size: 1rem;
   color: rgb(2, 2, 2);
   background-color: gray;
-  height: 50px;
+  height: 2.5rem;
 }
