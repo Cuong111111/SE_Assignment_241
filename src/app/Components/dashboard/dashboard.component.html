@@ -1,0 +1,59 @@
+<div class="dashboard-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo" />
+      <span>HCMUT SPSS</span>
+    </div>
+    <div class="user-info">
+      <span>{{ userName }}</span>
+      <span>{{ userId }}</span>
+      <button (click)="logout()">Đăng xuất</button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Page Balance -->
+    <div class="page-balance">
+      <h3>Số dư trang</h3>
+      <p>{{ pageBalance }}</p>
+      <div class="progress-bar">
+        <div
+          class="progress"
+          [style.width]="(pageBalance / 100) * 100 + '%'"
+        ></div>
+      </div>
+      <button class="btn-black" (click)="onBuyMore()">Mua thêm</button>
+    </div>
+
+    <!-- Quick Print -->
+    <div class="quick-print">
+      <h3>In nhanh</h3>
+      <button class="btn-black" (click)="onUploadDocument()">
+        Tải tài liệu
+      </button>
+    </div>
+
+    <!-- Recent Files -->
+    <div class="recent-files">
+      <div class="tabs">
+        <button class="active">In gần đây</button>
+        <button>Lịch sử in</button>
+      </div>
+      <div class="files-list">
+        <div class="file" *ngFor="let file of recentFiles">
+          <span>📄 {{ file.name }}</span>
+        </div>
+        <button class="show-more-btn" (click)="showMore()">
+          Hiển thị thêm
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2024 HCMUT Student Smart Printing Service. All rights reserved.</p>
+  </footer>
+</div>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Settings with File Display</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #d9eafd;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      margin: 50px auto;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    /* Phần bên trái: Cài đặt in */
+    .settings {
+      flex: 1;
+      background-color: #4eb3fe;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .settings h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: #333;
+    }
+
+    .confirm-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #4eb3fe;
+      background-color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .confirm-btn:hover {
+      background-color: #e0f1ff;
+    }
+
+    /* Phần bên phải: Chọn tệp */
+    .file-upload {
+      flex: 2;
+      margin-left: 20px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .file-upload h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .file-upload p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .file-upload input[type="file"] {
+      display: block;
+      margin: 0 auto 20px;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .upload-btn {
+      display: block;
+      margin: 0 auto 20px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #4eb3fe;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .upload-btn:hover {
+      background-color: #007bff;
+    }
+
+    .file-content {
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      font-size: 14px;
+      background-color: #f9f9f9;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Phần bên trái: Cài đặt in -->
+    <div class="settings">
+      <h2>Cài đặt in</h2>
+      <form>
+
+            <!-- Chọn máy in -->
+        <div class="form-group">
+        <label for="printers">Chọn máy in:</label>
+        <select id="printers" (change)="onPrinterChange($event)">
+          <option value="" disabled selected>-- Chọn máy in --</option>
+          <option *ngFor="let printer of printers" [value]="printer">{{ printer }}</option>
+        </select>
+      </div>
+          <!-- Hiển thị tên file đã chọn -->
+        <div class="form-group">
+          <label for="names">Tệp đã chọn:</label>
+          <input type="text" id="names" name="names" value="{{ selectedFileName || 'Chưa chọn' }}" disabled>
+      
+        </div>
+        <!-- Thiết lập -->
+        <div class="form-group">
+          <label for="settings">Thiết lập:</label>
+          <select id="settings" name="settings">
+            <option value="all">In tất cả các trang</option>
+            <option value="current">Chỉ in trang hiện tại</option>
+          </select>
+        </div>
+
+        <!-- Kích thước giấy -->
+        <div class="form-group">
+          <label for="paper-size">Kích thước giấy:</label>
+          <select id="paper-size" name="paper-size">
+            <option value="A4">A4 (21 cm x 29.7 cm)</option>
+            <option value="A3">A3</option>
+            <option value="Letter">Letter</option>
+            <option value="Custom">Tùy chỉnh</option>
+          </select>
+        </div>
+
+        <!-- Tổng số trang -->
+        <div class="form-group">
+          <label for="total-pages">Tổng số trang:</label>
+          <input type="text" id="total-pages" name="total-pages" value="{{ pageCount || 0 }}" disabled>
+        </div>
+
+        <!-- Nút xác nhận -->
+        <button type="button" class="confirm-btn" (click)="onSubmit()">Xác nhận</button>
+      </form>
+    </div>
+
+    <!-- Phần bên phải: Chọn tệp cần in -->
+    <div class="file-upload">
+      <h2>Chọn tệp cần in</h2>
+      <p>Vui lòng chọn tệp từ máy tính của bạn để xem nội dung.</p>
+      <input type="file" (change)="onFileSelected($event)">
+      <div class="file-content" id="file-content">
+        <div *ngIf="fileType === 'text'">
+          <pre>{{ fileContent }}</pre>
+        </div>
+        
+        <div *ngIf="fileType === 'image'">
+          <img [src]="fileContent" alt="Hình ảnh" style="max-width: 100%; height: auto;" />
+        </div>
+        
+        <div *ngIf="fileType === 'pdf'">
+          <iframe [src]="fileContent" width="100%" height="600px" style="border: none;"></iframe>
+        </div>
+        
+        <div *ngIf="fileType === 'docx'">
+          <div [innerHTML]="fileContent"></div>
+        </div>
+        
+        <div *ngIf="pageCount !== null">
+          <p><strong>Số trang:</strong> {{ pageCount }}</p>
+        </div>
+        
+        <div *ngIf="fileType === 'unsupported'">
+          <p>{{ fileContent }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
