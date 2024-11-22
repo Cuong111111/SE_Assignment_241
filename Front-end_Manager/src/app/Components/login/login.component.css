@@ -1,23 +1,23 @@
-.container {
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
   background-color: #1771af;
   font-family: Arial, sans-serif;
-  display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
 }
-/* Main container */
 .login-container {
   display: flex;
-  width: 100vh;
-  height: 70vh;
+  width: 80%;
+  height: 80%;
   box-shadow: 30px 30px #125583;
 }
 
 /* Left panel with logo */
 .left-panel {
-  width: 50%;
+  width: 40%;
   background-color: #0499ff;
   display: flex;
   justify-content: center;
@@ -31,7 +31,7 @@
 
 /* Right panel with login form */
 .right-panel {
-  width: 50%;
+  width: 60%;
   background-color: #ffffff;
   display: flex;
   justify-content: center;
@@ -45,13 +45,14 @@
 }
 
 .printer-icon {
-  width: 80px; /* Adjust size of printer icon */
-  margin-bottom: 20px;
+  width: 100px; /* Adjust size of printer icon */
+  margin-bottom: 5px;
 }
 
 h2 {
   margin-bottom: 20px;
   color: #333;
+  font-size: 3em;
 }
 
 form {
@@ -63,13 +64,14 @@ input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
+  border: 3px solid #ccc;
   border-radius: 12px;
   font-size: 1rem;
+  margin-bottom: 20px;
 }
 
 button {
-  width: 100%;
+  width: 50%;
   padding: 10px;
   background-color: #0078d7;
   color: #ffffff;
@@ -77,6 +79,9 @@ button {
   border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
+  font-weight: bold;
+  margin: 0 auto; /* Thêm thuộc tính này để căn giữa button */
+  display: block;
 }
 
 button:hover {
