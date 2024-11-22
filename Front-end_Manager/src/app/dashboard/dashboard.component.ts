@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { UserService, User } from '../user.service';
+import { UserService, User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,10 +13,19 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   user: User | null = null;
-  pageBalance: number | null = null; // Số dư trang in
+  pageBalance: number = 0; // Số dư trang in
   printHistory: any[] = []; // Lịch sử in ấn
   private sessionInterval: any; // Kiểm tra phiên định kỳ
   private logoutTimeout: any; // Đếm ngược để tự động đăng xuất
+
+  recentFiles = [
+    { name: 'Giải_tích1.pdf', type: 'pdf' },
+    { name: 'Bài_tập_lớn.doc', type: 'doc' },
+    { name: 'Bài_tập_lớn.doc', type: 'doc' },
+    { name: 'Bài_tập_lớn.doc', type: 'doc' },
+    { name: 'Bài_tập_lớn.doc', type: 'doc' },
+    { name: 'Bài_tập_lớn.doc', type: 'doc' },
+  ];
 
   constructor(
     private router: Router,
@@ -94,6 +103,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
       // Nếu hết thời gian
       this.logout();
     }
+  }
+
+  onBuyMore(): void {
+    console.log('Mua thêm');
+  }
+
+  onUploadDocument(): void {
+    this.router.navigate(['/print']);
+  }
+
+  showMore(): void {
+    console.log('Hiển thị thêm');
   }
 
   logout(): void {
