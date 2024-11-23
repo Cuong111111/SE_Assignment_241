@@ -47,8 +47,8 @@
     <button>Lịch sử in</button>
   </div>
   <div class="files-list">
-    <div class="file" *ngFor="let file of recentFiles">
-      <span>📄 {{ file.name }}</span>
+    <div class="file" *ngFor="let file of printHistory">
+      <span>📄 {{ file.title }}</span>
     </div>
     <button class="show-more-btn" (click)="showMore()">Hiển thị thêm</button>
   </div>
