@@ -8,6 +8,7 @@ namespace LoginApi.Services
     {
         private readonly IMemoryCache _cache;
         private const string UserCacheKey = "Users";
+        private const string SystemConfigCacheKey = "SystemConfig";
 
         public UserService(IMemoryCache cache)
         {
@@ -76,6 +77,21 @@ namespace LoginApi.Services
         private List<User> GetUsers()
         {
             return _cache.TryGetValue(UserCacheKey, out List<User> users) ? users : new List<User>();
+        }
+
+        public void UpdateUserPageBalanceSystemConfig()
+        {
+            var systemConfig = _cache.Get<SystemConfig>(SystemConfigCacheKey);
+             if (DateTime.Today.Date == systemConfig.IssueDate.Date)
+             {
+                var users = GetUsers();
+                foreach(var user in users)
+                    user.Page_balance+=systemConfig.DefaultPrintPageLimit;
+                
+                _cache.Set(UserCacheKey, users);
+             }
+
+
         }
     }
 }
