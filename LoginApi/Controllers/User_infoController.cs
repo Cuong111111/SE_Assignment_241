@@ -49,5 +49,14 @@ namespace LoginApi.Controllers
                 return NotFound(new { message = "No account found" });
             return Ok(new { UserId = userId, UpdatedPageBalance = newBalance });
         }
+
+        [HttpPost("update-page-balance")]
+        public IActionResult UpdatePageBalanceBySystemConfig()
+        {
+            // Call the service method to update page balances
+            _userService.UpdateUserPageBalanceSystemConfig();
+
+            return Ok(new { message = "User page balances updated successfully." });
+        }
     }
 }
