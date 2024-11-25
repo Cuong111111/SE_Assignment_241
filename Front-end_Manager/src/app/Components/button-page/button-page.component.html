@@ -1,0 +1,36 @@
+<div class="button-page-container">
+    <header class="header">
+      <img src="../../../assets/images/logo.png" alt="BK Logo" class="logo" />
+      <h1>HCMUT SPSS - SPSO</h1>
+      <div class="user-controls">
+        <span>Quản lí A</span>
+        <button class="logout-button">Đăng xuất</button>
+      </div>
+    </header>
+    <main class="main-content">
+      <div class="service-button">
+        <h2>Quản lí máy in</h2>
+        <p>Quản lý danh sách máy in và trạng thái hoạt động</p>
+        <button (click)="navigateTo('printer-management')">Quản lí máy in</button>
+      </div>
+      <div class="service-button">
+        <h2>Lịch sử in ấn</h2>
+        <p>Tra cứu lịch sử in ấn của sinh viên</p>
+        <button (click)="navigateTo('printing-history')">Xem lịch sử in ấn</button>
+      </div>
+      <div class="service-button">
+        <h2>Cấu hình hệ thống</h2>
+        <p>Quản lý cấu hình hệ thống của SPSS</p>
+        <button (click)="navigateTo('system-configuration')">Cấu hình hệ thống</button>
+      </div>
+      <div class="service-button">
+        <h2>Báo cáo</h2>
+        <p>Xem và tạo báo cáo sử dụng hệ thống</p>
+        <button (click)="navigateTo('report')">Xem báo cáo</button>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>© 2024 HCMUT Student Smart Printing Service. All rights reserved.</p>
+    </footer>
+  </div>
+  
