@@ -43,16 +43,16 @@
         <table class="table">
           <thead class="table-header">
             <tr>
-              <th>Date</th>
-              <th>Pages</th>
-              <th>Amount</th>
+              <th>Số giao dịch</th>
+              <th>Số lượng</th>
+              <th>Ngày giao dịch</th>
             </tr>
           </thead>
           <tbody class="table-body">
-            <tr *ngFor="let purchase of purchases$ | async">
-              <td>{{ purchase.date | date : "medium" }}</td>
-              <td>{{ purchase.pages }}</td>
-              <td>${{ purchase.amount.toFixed(2) }}</td>
+            <tr *ngFor="let purchase of paymentHistory">
+              <td>{{ purchase.paymentId }}</td>
+              <td>{{ purchase.amount }}</td>
+              <td>{{ purchase.paymentDate | date : "medium" }}</td>
             </tr>
           </tbody>
         </table>
@@ -60,14 +60,14 @@
     </div>
   </div>
 
-  <div *ngIf="isPaymentModalOpen$ | async" class="modal-overlay">
+  <div *ngIf="isPaymentModalOpen" class="modal-overlay">
     <div class="modal-content">
       <h3 class="modal-title">BKPay Payment</h3>
       <div class="modal-body">
         <p class="modal-text">
           Complete your purchase of
-          {{ (currentPurchase$ | async)?.pages ?? "0" }} pages for ${{
-            (currentPurchase$ | async)?.amount?.toFixed(2) ?? "0.00"
+          {{ currentPurchase?.pages ?? "0" }} pages for ${{
+            currentPurchase?.amount?.toFixed(2) ?? "0.00"
           }}
         </p>
       </div>
