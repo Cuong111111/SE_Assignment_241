@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   printHistory: any[] = []; // Lịch sử in ấn
   private sessionInterval: any; // Kiểm tra phiên định kỳ
   private logoutTimeout: any; // Đếm ngược để tự động đăng xuất
+  selectedFile: any = null;
 
   recentFiles = [
     { name: 'Giải_tích1.pdf', type: 'pdf' },
@@ -75,10 +76,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.user) {
       const url = `http://localhost:5057/api/history/print/${this.user.id}`;
       this.http.get<any[]>(url).subscribe({
-        next: (response) => (
-          console.log('Fetch successful:', response),
-          this.printHistory = response,
-          console.log(this.printHistory)),
+        next: (response) => {
+          console.log('Fetch successful:', response);
+          // Sắp xếp theo thời gian in gần nhất và giới hạn 5 file đầu
+          this.printHistory = response
+            .sort((a, b) => new Date(b.printDate).getTime() - new Date(a.printDate).getTime())
+            .slice(0, 5);
+          console.log(this.printHistory);
+        },
         error: (err) => console.error('Lỗi khi lấy lịch sử in ấn:', err),
       });
     }
@@ -121,5 +126,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.userService.clearUser();
     alert('Phiên đã hết hạn. Đăng xuất tự động.');
     this.router.navigate(['/login']);
+  }
+
+  showFileDetails(file: any): void {
+    this.selectedFile = file; // Gán file được chọn
+  }
+  closeFileDetails(): void {
+    this.selectedFile = null; // Xóa thông tin file được chọn
+  }
+  navigateToHistory(): void {
+    this.router.navigate(['/history']);
   }
 }

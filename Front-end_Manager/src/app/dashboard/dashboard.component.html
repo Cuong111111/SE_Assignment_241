@@ -44,13 +44,25 @@
 <div class="recent-files">
   <div class="tabs">
     <button class="active">In gần đây</button>
-    <button>Lịch sử in</button>
+    <button (click)="navigateToHistory()">Lịch sử in</button>
   </div>
   <div class="files-list">
-    <div class="file" *ngFor="let file of printHistory">
+    <div class="file" *ngFor="let file of printHistory" (click)="showFileDetails(file)">
       <span>📄 {{ file.title }}</span>
     </div>
-    <button class="show-more-btn" (click)="showMore()">Hiển thị thêm</button>
+    
+    <!-- Modal hiển thị chi tiết file -->
+    <div class="file-details-modal" *ngIf="selectedFile">
+      <div class="modal-content">
+        <h3>Chi tiết file</h3>
+        <p><strong>Tiêu đề:</strong> {{ selectedFile.title }}</p>
+        <p><strong>Định dạng:</strong> {{ selectedFile.fileFormats }}</p>
+        <p><strong>Ngày in:</strong> {{ selectedFile.printDate | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+        <p><strong>Số trang đã in:</strong> {{ selectedFile.pagesPrinted }}</p>
+        <p><strong>Printer ID:</strong> {{ selectedFile.printerId }}</p>
+        <button (click)="closeFileDetails()" class="btn-close">Đóng</button>
+      </div>
+    </div>
   </div>
 </div>
 
