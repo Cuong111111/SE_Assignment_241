@@ -1,46 +1,45 @@
 <div class="history-container">
-    <h1>Lịch sử in ấn sinh viên</h1>
-  
-    <section class="filters">
-      <label for="studentId">Mã số sinh viên:</label>
-      <input id="studentId" type="text" [(ngModel)]="studentId" placeholder="Nhập mã số sinh viên" />
-  
-      <label for="filterDate">Thời gian:</label>
-      <input id="filterDate" type="date" [(ngModel)]="filterDate" />
-      <button (click)="fetchPrintHistory()">Tìm kiếm</button>
-    </section>
-  
-    <section class="print-history">
-      <h2>Nhật kí in ấn sinh viên</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Tên file</th>
-            <th>Số trang</th>
-            <th>Thời gian bắt đầu</th>
-            <th>Thời gian kết thúc</th>
-            <th>Máy in</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let record of printHistory">
-            <td>{{ record.title }}</td>
-            <td>{{ record.pagesPrinted }}</td>
-            <td>{{ record.startTime | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
-            <td>{{ record.endTime | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
-            <td>{{ record.printerId }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  
-    <section class="export-report">
-      <h2>Xuất báo cáo</h2>
-      <label for="reportMonth">Tháng:</label>
-      <select id="reportMonth" [(ngModel)]="selectedMonth">
-        <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
-      </select>
-      <button (click)="exportMonthlyReport()">Xuất báo cáo</button>
-    </section>
-  </div>
-  
+  <h1>Lịch sử in ấn sinh viên</h1>
+
+  <section class="filters">
+    <label for="studentId">Mã số sinh viên:</label>
+    <input id="studentId" type="text" [(ngModel)]="studentId" placeholder="Nhập mã số sinh viên" />
+
+    <label for="filterDate">Thời gian:</label>
+    <input id="filterDate" type="date" [(ngModel)]="filterDate" />
+    <button (click)="fetchPrintHistory()">Tìm kiếm</button>
+  </section>
+
+  <section class="print-history">
+    <h2>Nhật kí in ấn sinh viên</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Tên file</th>
+          <th>Số trang</th>
+          <th>Thời gian bắt đầu</th>
+          <th>Thời gian kết thúc</th>
+          <th>Máy in</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of printHistory">
+          <td>{{ record.title }}</td>
+          <td>{{ record.pagesPrinted }}</td>
+          <td>{{ record.startTime | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td>{{ record.endTime | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td>{{ record.printerId }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="export-report">
+    <h2>Xuất báo cáo</h2>
+    <label for="reportMonth">Tháng:</label>
+    <select id="reportMonth" [(ngModel)]="selectedMonth">
+      <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+    </select>
+    <button (click)="exportMonthlyReport()">Xuất báo cáo</button>
+  </section>
+</div>
