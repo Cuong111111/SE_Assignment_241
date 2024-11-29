@@ -1,45 +1,44 @@
 <div class="printer-service-container">
-    <h1>Quản Lý Máy in</h1>
-  
-    <section class="add-printer-section">
-      <h2>Thêm máy in</h2>
-      <form>
-        <div class="form-group">
-          <label for="printer-id">ID Máy in:</label>
-          <input id="printer-id" type="text" [(ngModel)]="printer.id" />
-        </div>
-        <div class="form-group">
-          <label for="manufacturer">Nhà sản xuất:</label>
-          <input id="manufacturer" type="text" [(ngModel)]="printer.manufacturer" />
-        </div>
-        <div class="form-group">
-          <label for="location">Địa chỉ:</label>
-          <input id="location" type="text" [(ngModel)]="printer.location" />
-        </div>
-        <div class="form-group">
-          <label for="model">Model:</label>
-          <input id="model" type="text" [(ngModel)]="printer.model" />
-        </div>
-        <button type="button" (click)="addPrinter()">Xác nhận</button>
-      </form>
-    </section>
-  
-    <section class="manage-printers-section">
-      <h2>Quản lý máy in</h2>
-      <div class="printers-grid">
-        <div *ngFor="let printer of printers" class="printer-item">
-          <span>{{ printer.name }}</span>
-          <label class="switch">
-            <input type="checkbox" [(ngModel)]="printer.status" />
-            <span class="slider round"></span>
-          </label>
-        </div>
+  <h1>Quản Lý Máy in</h1>
+
+  <section class="add-printer-section">
+    <h2>Thêm máy in</h2>
+    <form>
+      <div class="form-group">
+        <label for="printer-id">ID Máy in:</label>
+        <input id="printer-id" type="text" [(ngModel)]="printer.id" />
       </div>
-    </section>
-  
-    <div class="actions">
-      <button (click)="saveChanges()">Lưu thay đổi</button>
-      <button (click)="proceed()">Tiếp tục</button>
+      <div class="form-group">
+        <label for="manufacturer">Nhà sản xuất:</label>
+        <input id="manufacturer" type="text" [(ngModel)]="printer.manufacturer" />
+      </div>
+      <div class="form-group">
+        <label for="location">Địa chỉ:</label>
+        <input id="location" type="text" [(ngModel)]="printer.location" />
+      </div>
+      <div class="form-group">
+        <label for="model">Model:</label>
+        <input id="model" type="text" [(ngModel)]="printer.model" />
+      </div>
+      <button type="button" (click)="addPrinter()">Xác nhận</button>
+    </form>
+  </section>
+
+  <section class="manage-printers-section">
+    <h2>Quản lý máy in</h2>
+    <div class="printers-grid">
+      <div *ngFor="let printer of printers" class="printer-item">
+        <span>{{ printer.name }}</span>
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="printer.status" />
+          <span class="slider round"></span>
+        </label>
+      </div>
     </div>
+  </section>
+
+  <div class="actions">
+    <button (click)="saveChanges()">Lưu thay đổi</button>
+    <button (click)="proceed()">Tiếp tục</button>
   </div>
-  
+</div>
