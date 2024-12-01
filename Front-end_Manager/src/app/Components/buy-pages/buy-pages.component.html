@@ -9,6 +9,7 @@
           [class.active]="activeTab === 'purchase'"
           class="tab-button"
         >
+          <img src="../../../assets/images/card-icon.png" class="card-icon" />
           Mua mới
         </button>
         <button
@@ -16,6 +17,10 @@
           [class.active]="activeTab === 'history'"
           class="tab-button"
         >
+          <img
+            src="../../../assets/images/history-icon.png"
+            class="history-icon"
+          />
           Lịch sử giao dịch
         </button>
       </div>
@@ -34,8 +39,14 @@
               class="form-input"
             />
           </div>
-          <div class="amount">Số tiền: {{ pages }} 000 VNĐ</div>
-          <button type="submit" class="submit-button">Thanh toán</button>
+          <div class="amount">Số tiền: {{ pages }} 000 VND</div>
+          <button type="submit" class="submit-button">
+            <img
+              src="../../../assets/images/payment-icon.png"
+              class="payment-icon"
+            />
+            Thanh toán
+          </button>
         </form>
       </div>
 
