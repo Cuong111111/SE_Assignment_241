@@ -1,0 +1,65 @@
+<div class="printer-service-container">
+  <h1>Quản Lý Máy In</h1>
+
+  <section class="add-printer">
+    <h2>Thêm Máy In Mới</h2>
+    <form (ngSubmit)="addPrinter()" #printerForm="ngForm">
+      <div class="form-group">
+        <label for="name">Tên Máy In</label>
+        <input type="text" id="name" [(ngModel)]="newPrinter.name" name="name" required />
+      </div>
+      <div class="form-group">
+        <label for="brand">Thương Hiệu</label>
+        <input type="text" id="brand" [(ngModel)]="newPrinter.brand" name="brand" required />
+      </div>
+      <div class="form-group">
+        <label for="model">Mẫu Máy</label>
+        <input type="text" id="model" [(ngModel)]="newPrinter.model" name="model" required />
+      </div>
+      <div class="form-group">
+        <label for="description">Mô Tả</label>
+        <input type="text" id="description" [(ngModel)]="newPrinter.description" name="description" required />
+      </div>
+      <div class="form-group">
+        <label for="location">Vị Trí</label>
+        <input type="text" id="location" [(ngModel)]="newPrinter.location" name="location" required />
+      </div>
+      <button type="submit">Thêm Máy In</button>
+    </form>
+  </section>
+
+  <section class="printer-list">
+    <h2>Danh Sách Máy In</h2>
+    <div class="printer-category">
+      <h3>Máy In Đang Hoạt Động</h3>
+      <ul>
+        <li *ngFor="let printer of activePrinters">
+          <div>
+            <strong>{{ printer.name }}</strong> ({{ printer.brand }} {{ printer.model }})
+            <button (click)="deletePrinter(printer.id)">Xóa</button>
+          </div>
+          <p>{{ printer.description }}</p>
+          <p>{{ printer.location }}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="printer-category">
+      <h3>Máy In Không Hoạt Động</h3>
+      <ul>
+        <li *ngFor="let printer of inactivePrinters">
+          <div>
+            <strong>{{ printer.name }}</strong> ({{ printer.brand }} {{ printer.model }})
+            <button (click)="deletePrinter(printer.id)">Xóa</button>
+          </div>
+          <p>{{ printer.description }}</p>
+          <p>{{ printer.location }}</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="actions">
+    <button (click)="updatePrinterStatuses()">Cập Nhật Trạng Thái</button>
+    <button (click)="proceed()">Tiếp tục</button>
+  </div>
+</div>

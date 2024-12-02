@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 interface Printer {
   id: number;
@@ -15,6 +17,7 @@ interface Printer {
   selector: 'app-printer-service',
   templateUrl: './printer-service.component.html',
   styleUrls: ['./printer-service.component.css'],
+  standalone: true, imports: [CommonModule, FormsModule]
 })
 export class PrinterServiceComponent implements OnInit {
   printers: Printer[] = [];

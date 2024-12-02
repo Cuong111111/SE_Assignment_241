@@ -1,5 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 interface PrintHistory {
   printId: number;
@@ -14,6 +16,7 @@ interface PrintHistory {
   selector: 'app-history-service',
   templateUrl: './history-service.component.html',
   styleUrls: ['./history-service.component.css'],
+  standalone: true, imports: [CommonModule, FormsModule]
 })
 export class HistoryServiceComponent {
   studentId: string = '';
