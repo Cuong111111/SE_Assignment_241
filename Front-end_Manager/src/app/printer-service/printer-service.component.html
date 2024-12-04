@@ -1,65 +1,110 @@
 <div class="printer-service-container">
   <h1>Quản Lý Máy In</h1>
 
-  <section class="add-printer">
-    <h2>Thêm Máy In Mới</h2>
-    <form (ngSubmit)="addPrinter()" #printerForm="ngForm">
+  <!-- Form để thêm máy in mới -->
+  <section class="add-printer-section">
+    <h2>Thêm Máy In</h2>
+    <form>
+
       <div class="form-group">
-        <label for="name">Tên Máy In</label>
-        <input type="text" id="name" [(ngModel)]="newPrinter.name" name="name" required />
+        <label for="printer-name">Tên Máy In:</label>
+        <input
+          id="printer-name"
+          type="text"
+          [(ngModel)]="newPrinter.name"
+          name="printerName"
+          required
+        />
       </div>
+
       <div class="form-group">
-        <label for="brand">Thương Hiệu</label>
-        <input type="text" id="brand" [(ngModel)]="newPrinter.brand" name="brand" required />
+        <label for="printer-brand">Thương Hiệu:</label>
+        <input
+          id="printer-brand"
+          type="text"
+          [(ngModel)]="newPrinter.brand"
+          name="printerBrand"
+          required
+        />
       </div>
+
       <div class="form-group">
-        <label for="model">Mẫu Máy</label>
-        <input type="text" id="model" [(ngModel)]="newPrinter.model" name="model" required />
+        <label for="printer-model">Model:</label>
+        <input
+          id="printer-model"
+          type="text"
+          [(ngModel)]="newPrinter.model"
+          name="printerModel"
+          required
+        />
       </div>
+
       <div class="form-group">
-        <label for="description">Mô Tả</label>
-        <input type="text" id="description" [(ngModel)]="newPrinter.description" name="description" required />
+        <label for="printer-description">Mô Tả:</label>
+        <input
+          id="printer-description"
+          [(ngModel)]="newPrinter.description"
+          name="printerDescription"
+          rows="3"
+          required
+        >
       </div>
+
       <div class="form-group">
-        <label for="location">Vị Trí</label>
-        <input type="text" id="location" [(ngModel)]="newPrinter.location" name="location" required />
+        <label for="printer-location">Vị Trí:</label>
+        <input
+          id="printer-location"
+          type="text"
+          [(ngModel)]="newPrinter.location"
+          name="printerLocation"
+          required
+        />
       </div>
-      <button type="submit">Thêm Máy In</button>
+
+      <button type="button" (click)="addPrinter()">Thêm Máy In</button>
     </form>
   </section>
 
-  <section class="printer-list">
-    <h2>Danh Sách Máy In</h2>
-    <div class="printer-category">
-      <h3>Máy In Đang Hoạt Động</h3>
-      <ul>
-        <li *ngFor="let printer of activePrinters">
-          <div>
-            <strong>{{ printer.name }}</strong> ({{ printer.brand }} {{ printer.model }})
-            <button (click)="deletePrinter(printer.id)">Xóa</button>
-          </div>
-          <p>{{ printer.description }}</p>
-          <p>{{ printer.location }}</p>
-        </li>
-      </ul>
-    </div>
-    <div class="printer-category">
-      <h3>Máy In Không Hoạt Động</h3>
-      <ul>
-        <li *ngFor="let printer of inactivePrinters">
-          <div>
-            <strong>{{ printer.name }}</strong> ({{ printer.brand }} {{ printer.model }})
-            <button (click)="deletePrinter(printer.id)">Xóa</button>
-          </div>
-          <p>{{ printer.description }}</p>
-          <p>{{ printer.location }}</p>
-        </li>
-      </ul>
+  <section class="manage-printers-section">
+    <h2>Quản Lý Máy In</h2>
+    <div class="printers-grid">
+      <div *ngFor="let printer of printers" class="printer-item" style="position: relative;">
+        <!-- Nút xóa -->
+        <button
+          class="delete-button"
+          (click)="deletePrinter(printer.id)"
+          title="Xóa máy in"
+          style="
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: transparent;
+            border: none;
+            color: red;
+            font-size: 16px;
+            cursor: pointer;"
+        >
+          &times;
+        </button>
+  
+        <!-- Nội dung máy in -->
+        <div>
+          <strong>Tên:</strong> {{ printer.name }}<br />
+          <strong>Thương Hiệu:</strong> {{ printer.brand }}<br />
+          <strong>Model:</strong> {{ printer.model }}<br />
+          <strong>Vị Trí:</strong> {{ printer.location }}
+        </div>
+        <label class="switch">
+          <input
+            type="checkbox"
+            [(ngModel)]="printer.isActive"
+            name="printerStatus{{ printer.id }}"
+            (change)="togglePrinterStatus(printer)"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
     </div>
   </section>
 
-  <div class="actions">
-    <button (click)="updatePrinterStatuses()">Cập Nhật Trạng Thái</button>
-    <button (click)="proceed()">Tiếp tục</button>
-  </div>
 </div>
