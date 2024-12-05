@@ -1,0 +1,93 @@
+<div>
+    <!-- Form lọc -->
+    <form>
+      <div>
+        <label for="userId">Student ID:</label>
+        <input
+          id="userId"
+          type="text"
+          placeholder="Enter Student ID"
+          [(ngModel)]="searchUserId"
+          name="userId"
+        />
+      </div>
+      <div>
+        <label for="year">Year:</label>
+        <input
+          id="year"
+          type="text"
+          placeholder="YYYY"
+          [(ngModel)]="searchYear"
+          name="year"
+        />
+      </div>
+      <div>
+        <label for="month">Month:</label>
+        <input
+          id="month"
+          type="text"
+          placeholder="MM"
+          [(ngModel)]="searchMonth"
+          name="month"
+        />
+      </div>
+      <div>
+        <label for="day">Day:</label>
+        <input
+          id="day"
+          type="text"
+          placeholder="DD"
+          [(ngModel)]="searchDay"
+          name="day"
+        />
+      </div>
+      <button type="button" (click)="applyFilter()">Apply Filter</button>
+      <button type="button" (click)="resetFilter()">Reset Filter</button>
+    </form>
+  </div>
+  
+  <!-- Bảng hiển thị lịch sử in -->
+  <table>
+    <thead>
+      <tr>
+        <th>Print ID</th>
+        <th>User ID</th>
+        <th>Print Date</th>
+        <th>Pages Printed</th>
+        <th>Printer ID</th>
+        <th>File Formats</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let history of getCurrentPageItems()">
+        <td>{{ history.printId }}</td>
+        <td>{{ history.userId }}</td>
+        <td>{{ history.printDate | date: 'dd-MM-yyyy' }}</td>
+        <td>{{ history.pagesPrinted }}</td>
+        <td>{{ history.printerId }}</td>
+        <td>{{ history.fileFormats }}</td>
+        <td>{{ history.title }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- Điều hướng trang -->
+  <div>
+    <button
+      type="button"
+      (click)="changePage('prev')"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ getTotalPages() }}</span>
+    <button
+      type="button"
+      (click)="changePage('next')"
+      [disabled]="currentPage === getTotalPages()"
+    >
+      Next
+    </button>
+  </div>
+  
