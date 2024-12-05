@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ButtonPageComponent } from './components/button-page/button-page.component';
 import { BuyPagesComponent } from './components/buy-pages/buy-pages.component';
 import { PrinterViewComponent } from './components/printer-view/printer-view.component';
+import { SPSOPrintComponent } from './spso-print/spso-print.component';
 
 export const routes: Routes = [
     { path: '', component: LandingPageComponent },
@@ -21,4 +22,5 @@ export const routes: Routes = [
     { path: 'button-page', component: ButtonPageComponent},
     { path: 'buy', component: BuyPagesComponent },
     { path: 'printer', component: PrinterViewComponent }
+    { path: 'spso-print', component: SPSOPrintComponent }
 ];
