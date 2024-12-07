@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from '../../services/user.service';
 
 interface User {
   id: number;
+  email: string;
   name: string;
   isSPSO: boolean;
+  page_balance: number;
+  recentPayments: any[];
+  recentPrints: any[];
 }
 
 interface LoginResponse {
   user: User;
-  message: string;
 }
 
 @Component({
@@ -20,8 +24,11 @@ interface LoginResponse {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private router: Router, private http: HttpClient) {}
-
+  constructor(
+    private router: Router, 
+    private http: HttpClient,
+    private userService: UserService  // Thêm UserService
+  ) {}
   onLogin(): void {
     const emailInput = (document.getElementById('email') as HTMLInputElement).value;
     const passwordInput = (document.getElementById('password') as HTMLInputElement).value;
@@ -46,24 +53,23 @@ export class LoginComponent {
       ).subscribe({
         next: (response) => {
           console.log('Login successful:', response);
-          // Lưu thông tin người dùng vào localStorage
-          localStorage.setItem('user', JSON.stringify(response.user));
+          this.userService.setUser({
+            id: response.user.id,
+            name: response.user.name,
+            isSPSO: response.user.isSPSO
+          });
           alert('Đăng nhập thành công!');
-          this.router.navigate(['/dashboard']);
+          if (response.user.isSPSO) {
+            this.router.navigate(['/button-page']);
+          } else {
+            this.router.navigate(['/dashboard']);
+          }
         },
         error: (error) => {
           console.error('Login error details:', error);
-          
-          if (error.status === 0) {
-            alert('Không thể kết nối đến server. Vui lòng kiểm tra:' + 
-                  '\n1. Server đã được khởi động' +
-                  '\n2. Đúng port 5057' +
-                  '\n3. CORS đã được cấu hình');
-          } else {
-            alert('Đăng nhập thất bại: ' + (error.error?.message || 'Lỗi không xác định'));
           }
         },
-      });
+      );
     } else {
       alert('Vui lòng nhập email và mật khẩu!');
     }
