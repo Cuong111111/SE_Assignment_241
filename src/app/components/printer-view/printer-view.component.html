@@ -1,0 +1,40 @@
+<header class="header">
+  <div class="logo-container">
+    <img
+      src="../../../assets/images/logo.png"
+      alt="HCMUT SPSS Logo"
+      class="logo"
+    />
+    <span class="logo-text">HCMUT SPSS</span>
+  </div>
+  <div class="user-info">
+    <span class="user-name">{{ user?.name }}</span>
+    <button class="login-btn" (click)="logout()">Đăng xuất</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="image-and-menu">
+    <!-- Image on the left -->
+    <img src="../../../assets/images/BK-map.jpg" alt="Map" class="map" />
+
+    <!-- Menu and Confirm Button on the right -->
+    <div class="menu-container">
+      <div class="section">
+        <label for="printer" class="menu-label">Printer:</label>
+        <select id="printer" [formControl]="printerList">
+          <option *ngFor="let printer of activePrinters" [value]="printer.id">
+            {{ printer.id }} - {{ printer.location }}
+          </option>
+        </select>
+      </div>
+      <!-- Confirm Button -->
+      <button (click)="confirmSelection()" class="confirm">Xác nhận</button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>© 2024 HCMUT Student Smart Printing Service. All rights reserved.</p>
+</footer>

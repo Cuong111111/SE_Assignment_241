@@ -1,0 +1,52 @@
+
+.container {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  .left-panel {
+    width: 40%;
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .left-panel h3 {
+    margin-bottom: 10px;
+  }
+  
+  .left-panel input,
+  .left-panel select {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .left-panel ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .left-panel ul li {
+    margin-bottom: 10px;
+  }
+  
+  .submit-button {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .right-panel {
+    width: 60%;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  

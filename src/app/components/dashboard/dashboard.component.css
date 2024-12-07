@@ -1,0 +1,221 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: #dfecfe;
+  font-family: Arial, sans-serif;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  height: 4rem;
+  padding: 10px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .logo {
+    margin-left: 20px;
+    width: 4rem;
+  }
+  
+  .user-info .login-btn {
+    margin-right: 30px;
+    background-color: #efefef;
+    color: #fff;
+    border: 1px solid black;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: black;
+  }
+
+  .user-info .user-name {
+    margin-right: 5px;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  
+  .login-btn:hover {
+    background-color: #efefef3c;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .user-info span {
+    font-size: 14px;
+  }
+  
+  .user-info button {
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .user-info button:hover {
+    background: black;
+    color: white;
+  }
+  
+  /* Main Content */
+  .function-container {
+    margin: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .page-balance, .quick-print {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 45%;
+  }
+  
+  .page-balance h3, .quick-print h3 {
+    font-size: 1.2rem;
+    text-align: left;
+  }
+  
+  .page-balance p {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  .progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #eee;
+    border-radius: 5px;
+    margin: 10px 0;
+    overflow: hidden;
+  }
+  
+  .progress {
+    height: 100%;
+    background: #000000;
+  }
+  
+  .upload-icon {
+    width: 15px;
+  }
+
+  .btn-black {
+    display: block;
+    margin: auto;
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 40%;
+  }
+  
+  .btn-black:hover {
+    background: #333;
+  }
+  
+  /* Recent Files */
+  .recent-files {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    margin-top: 0.5rem;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: fit-content;
+    height: auto;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .tabs button {
+    background: #f0f0f0;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .tabs button.active {
+    background: #00aaff;
+    color: white;
+  }
+  
+  .files-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .file {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .file:hover {
+    background: #e0e0e0;
+  }
+  
+  .show-more-btn {
+    background: white;
+    border: 1px solid black;
+    padding: 5px 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 30%;
+    display: block;
+    margin: auto;
+  }
+  
+  .show-more-btn:hover {
+    background: black;
+    color: white;
+  }
+  
+  /* Footer */
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    color: rgb(2, 2, 2);
+    background-color: gray;
+    height: 2.5rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  

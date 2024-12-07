@@ -1,0 +1,58 @@
+<div class="print-dialog">
+  <h2>Print</h2>
+  <div class="section">
+    <label for="copies">Copies:</label>
+    <input id="copies" type="number" [formControl]="copiesControl" min="1" />
+  </div>
+
+  <div class="section">
+    <label for="printer">Printer:</label>
+    <select id="printer" [formControl]="printerControl">
+      <option value="HP LaserJet 1020">HP LaserJet 1020</option>
+      <option value="Canon Pixma 3000">Canon Pixma 3000</option>
+      <option value="Epson EcoTank L3150">Epson EcoTank L3150</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <h3>Settings</h3>
+    <div>
+      <label for="pages">Pages:</label>
+      <select id="pages" [formControl]="pagesControl">
+        <option value="all">Print All Pages</option>
+        <option value="custom">Custom (e.g., 1,3,5)</option>
+      </select>
+    </div>
+    <div>
+      <label for="sides">Print:</label>
+      <select id="sides" [formControl]="sidesControl">
+        <option value="one-sided">One Side</option>
+        <option value="double-sided">Both Sides</option>
+      </select>
+    </div>
+    <div>
+      <label for="orientation">Orientation:</label>
+      <select id="orientation" [formControl]="orientationControl">
+        <option value="portrait">Portrait</option>
+        <option value="landscape">Landscape</option>
+      </select>
+    </div>
+    <div>
+      <label for="paper-size">Paper Size:</label>
+      <select id="paper-size" [formControl]="paperSizeControl">
+        <option value="letter">Letter (8.5" x 11")</option>
+        <option value="a4">A4 (210 x 297 mm)</option>
+      </select>
+    </div>
+    <div>
+      <label for="margins">Margins:</label>
+      <select id="margins" [formControl]="marginsControl">
+        <option value="normal">Normal</option>
+        <option value="narrow">Narrow</option>
+        <option value="wide">Wide</option>
+      </select>
+    </div>
+  </div>
+
+  <button class="print-button">Print</button>
+</div>
