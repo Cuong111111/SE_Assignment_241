@@ -1,0 +1,27 @@
+<div class="report-container">
+    <h1>Monthly Report</h1>
+    <div>
+      <label for="year">Year:</label>
+      <input type="number" id="year" [(ngModel)]="year">
+    </div>
+    <div>
+      <label for="month">Month:</label>
+      <input type="number" id="month" [(ngModel)]="month">
+    </div>
+    <button (click)="fetchReport()">Fetch Report</button>
+    <div *ngIf="report">
+      <h2>Report for {{ report.month }}/{{ report.year }}</h2>
+      <div>
+        <h3>Printers Used</h3>
+        <ul>
+          <li *ngFor="let printer of report.printerReports">
+            Printer ID: {{ printer.printerId }}, Pages Printed: {{ printer.pagesPrinted }}
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3>Total Payments: {{ report.totalPayments }}</h3>
+      </div>
+    </div>
+  </div>
+  
