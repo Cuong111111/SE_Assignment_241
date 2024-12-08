@@ -14,7 +14,7 @@ interface SystemConfig {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './system-config.component.html',
-  styleUrls: ['./system-config.component.css'],
+  styleUrls: ['./system-config.commponent.css'],
 })
 export class SystemConfigComponent implements OnInit {
   fileFormats = ['PDF', 'DOCX', 'DOC', 'PPTX', 'PPT', 'XLS', 'XLSX'];
@@ -32,7 +32,7 @@ export class SystemConfigComponent implements OnInit {
    * Fetches the system configuration from the backend.
    */
   fetchConfig(): void {
-    this.http.get<SystemConfig>('/api/system-config').subscribe({
+    this.http.get<SystemConfig>('http://localhost:5057/api/system-config').subscribe({
       next: (config) => {
         this.allowedFileFormats = config.allowedFileFormats;
         this.defaultPrintPageLimit = config.defaultPrintPageLimit;
@@ -70,7 +70,7 @@ export class SystemConfigComponent implements OnInit {
       issueDate: this.issueDate,
     };
 
-    this.http.put('/api/system-config', updatedConfig).subscribe({
+    this.http.put('http://localhost:5057/api/system-config', updatedConfig).subscribe({
       next: () => {
         alert('Cấu hình đã được lưu thành công!');
       },
