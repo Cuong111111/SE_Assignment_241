@@ -1,37 +1,37 @@
 <div class="config-container">
-  <h1>Quản Lý Cấu Hình Hệ Thống</h1>
-
-  <section class="file-formats">
-    <h2>Định dạng tệp được chấp thuận</h2>
-    <div class="checkbox-group">
-      <label *ngFor="let format of fileFormats">
-        <input
-          type="checkbox"
-          [checked]="allowedFileFormats.includes(format)"
-          (change)="toggleFileFormat(format, $event)"
-        />
-        {{ format }}
-      </label>
+    <h1>Quản Lý Cấu Hình Hệ Thống</h1>
+  
+    <section class="file-formats">
+      <h2>Định dạng tệp được chấp thuận</h2>
+      <div class="checkbox-group">
+        <label *ngFor="let format of fileFormats">
+          <input
+            type="checkbox"
+            [checked]="allowedFileFormats.includes(format)"
+            (change)="toggleFileFormat(format, $event)"
+          />
+          {{ format }}
+        </label>
+      </div>
+    </section>
+  
+    <section class="page-limit">
+      <h2>Giới Hạn Số Trang In Mặc Định</h2>
+      <input
+        type="number"
+        [(ngModel)]="defaultPrintPageLimit"
+        placeholder="Nhập số trang"
+      />
+      <span>pages</span>
+    </section>
+  
+    <section class="issue-date">
+      <h2>Ngày cấp phát</h2>
+      <input type="date" [(ngModel)]="issueDate" />
+    </section>
+  
+    <div class="actions">
+      <button (click)="saveConfig()">Lưu thay đổi</button>
+      <button (click)="proceed()">Tiếp tục</button>
     </div>
-  </section>
-
-  <section class="page-limit">
-    <h2>Giới Hạn Số Trang In Mặc Định</h2>
-    <input
-      type="number"
-      [(ngModel)]="defaultPrintPageLimit"
-      placeholder="Nhập số trang"
-    />
-    <span>pages</span>
-  </section>
-
-  <section class="issue-date">
-    <h2>Ngày cấp phát</h2>
-    <input type="date" [(ngModel)]="issueDate" />
-  </section>
-
-  <div class="actions">
-    <button (click)="saveConfig()">Lưu thay đổi</button>
-    <button (click)="proceed()">Tiếp tục</button>
   </div>
-</div>
