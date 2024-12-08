@@ -51,8 +51,8 @@ export class ButtonPageComponent {
       this.logout();
     }
   }
-  navigateTo(route: string): void {
-    this.router.navigate([route]);
+  toReport(): void {
+    this.router.navigate(['/report']);
   }
   
   toPrinterService(): void {

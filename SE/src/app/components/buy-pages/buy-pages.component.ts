@@ -75,6 +75,7 @@ export class BuyPagesComponent implements OnInit {
         console.log('API response:', response);
         
         if (response && response.paymentId) {
+          await this.updatePageBalance(this.user.id, this.currentPurchase.pages);
           await this.fetchPaymentHistory();
           this.isPaymentModalOpen = false;
           this.currentPurchase = null;
@@ -87,6 +88,23 @@ export class BuyPagesComponent implements OnInit {
         console.error('Lỗi khi hoàn tất giao dịch:', err);
       }
     }
+  }
+
+  async updatePageBalance(userId: number, pages: number) {
+    const url = `http://localhost:5057/api/User_info/${userId}/pagebalance`;
+    console.log(url);
+    this.http.get<{ pageBalance: number }>(url).subscribe({
+      next: (response) => {
+        console.log('Fetch successful:', response);
+        const currentBalance = response.pageBalance;
+        const newBalance = currentBalance + pages;
+        this.http.put(url, newBalance).subscribe({
+          next: () => console.log('Page balance updated successfully'),
+          error: (err) => console.error('Lỗi khi cập nhật số trang:', err),
+        });
+      },
+      error: (err) => console.error('Lỗi khi lấy số dư:', err),
+    });
   }
 
   cancelPurchase() {

@@ -11,7 +11,7 @@ import { ButtonPageComponent } from './components/button-page/button-page.compon
 import { SystemConfigComponent } from './components/system-config/system-config.component'
 import { PrinterServiceComponent } from './components/printer-service/printer-service.component'
 import { SPSOPrintComponent } from './components/spso-print/spso-print.component'
-
+import { ReportComponent } from './components/report/report.component'
 export const routes: Routes = [
     { path: '', component: LandingPageComponent },
     { path: 'login', component: LoginComponent },
@@ -24,5 +24,6 @@ export const routes: Routes = [
     { path: 'button-page', component: ButtonPageComponent},
     { path: 'system-config', component: SystemConfigComponent},
     { path: 'printer-service', component: PrinterServiceComponent},
-    { path: 'spso-print', component: SPSOPrintComponent}
+    { path: 'spso-print', component: SPSOPrintComponent},
+    { path: 'report', component: ReportComponent}
 ];

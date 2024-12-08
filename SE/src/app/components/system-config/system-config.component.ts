@@ -14,7 +14,7 @@ interface SystemConfig {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './system-config.component.html',
-  styleUrls: ['./system-config.commponent.css'],
+  styleUrls: ['./system-config.component.css'],
 })
 export class SystemConfigComponent implements OnInit {
   fileFormats = ['PDF', 'DOCX', 'DOC', 'PPTX', 'PPT', 'XLS', 'XLSX'];
