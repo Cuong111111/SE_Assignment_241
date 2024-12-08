@@ -25,11 +25,11 @@ namespace LoginApi.Services
             {
             paymentHistory = new List<PaymentHistory>
                 {
-                    new PaymentHistory { PaymentId = 1, UserId = 3, Amount = 100, PaymentDate = new DateTime(2024, 12, 1) },
-                    new PaymentHistory { PaymentId = 2, UserId = 3, Amount = 250, PaymentDate = new DateTime(2024, 12, 3) },
-                    new PaymentHistory { PaymentId = 3, UserId = 4, Amount = 175, PaymentDate = new DateTime(2024, 11, 28) },
-                    new PaymentHistory { PaymentId = 4, UserId = 5, Amount = 300, PaymentDate = new DateTime(2024, 11, 30) },
-                    new PaymentHistory { PaymentId = 5, UserId = 5, Amount = 120, PaymentDate = new DateTime(2024, 12, 5) }
+                    new PaymentHistory { PaymentId = 1, UserId = 3, Amount = 100, PaymentDate = new DateTime(2024, 12, 1, 10, 0, 30, 500) },
+                    new PaymentHistory { PaymentId = 2, UserId = 3, Amount = 250, PaymentDate = new DateTime(2024, 12, 3, 14, 15, 45, 250) },
+                    new PaymentHistory { PaymentId = 3, UserId = 4, Amount = 175, PaymentDate = new DateTime(2024, 11, 28, 9, 45, 12, 100)  },
+                    new PaymentHistory { PaymentId = 4, UserId = 5, Amount = 300, PaymentDate = new DateTime(2024, 11, 30, 16, 30, 25, 900) },
+                    new PaymentHistory { PaymentId = 5, UserId = 5, Amount = 120, PaymentDate = new DateTime(2024, 12, 5, 8, 20, 55, 600) }
                 };
             _cache.Set(PaymentHistoryCacheKey, paymentHistory);
             }
@@ -39,11 +39,11 @@ namespace LoginApi.Services
             {
             printHistory = new List<PrintHistory>
                 {
-                    new PrintHistory { PrintId = 1, UserId = 3, PrinterId = 2, PagesPrinted = 3, PrintDate = new DateTime(2024, 12, 1), FileFormats = "PDF", Title = "Report_2024" },
-                    new PrintHistory { PrintId = 2, UserId = 3, PrinterId = 2, PagesPrinted = 4, PrintDate = new DateTime(2024, 12, 2), FileFormats = "DOCX", Title = "Thesis_Draft" },
-                    new PrintHistory { PrintId = 3, UserId = 4, PrinterId = 2, PagesPrinted = 2, PrintDate = new DateTime(2024, 12, 3), FileFormats = "DOCX", Title = "Presentation" },
-                    new PrintHistory { PrintId = 4, UserId = 4, PrinterId = 2, PagesPrinted = 1, PrintDate = new DateTime(2024, 11, 30), FileFormats = "DOCX", Title = "Invoice_1234" },
-                    new PrintHistory { PrintId = 5, UserId = 5, PrinterId = 2, PagesPrinted = 5, PrintDate = new DateTime(2024, 12, 5), FileFormats = "DOCX", Title = "Notes" }
+                    new PrintHistory { PrintId = 1, UserId = 3, PrinterId = 2, PagesPrinted = 3, PrintDate = new DateTime(2024, 12, 1, 10, 5, 15, 300), FileFormats = "PDF", Title = "Report_2024" },
+                    new PrintHistory { PrintId = 2, UserId = 3, PrinterId = 2, PagesPrinted = 4, PrintDate = new DateTime(2024, 12, 2, 14, 30, 45, 100), FileFormats = "DOCX", Title = "Thesis_Draft" },
+                    new PrintHistory { PrintId = 3, UserId = 4, PrinterId = 2, PagesPrinted = 2, PrintDate = new DateTime(2024, 12, 3, 17, 50, 25, 450), FileFormats = "DOCX", Title = "Presentation" },
+                    new PrintHistory { PrintId = 4, UserId = 4, PrinterId = 2, PagesPrinted = 1, PrintDate = new DateTime(2024, 11, 30, 11, 0, 35, 200), FileFormats = "DOCX", Title = "Invoice_1234" },
+                    new PrintHistory { PrintId = 5, UserId = 5, PrinterId = 2, PagesPrinted = 5, PrintDate = new DateTime(2024, 12, 5, 18, 15, 55, 800), FileFormats = "DOCX", Title = "Notes" }
                 };
             };
             _cache.Set(PrintHistoryCacheKey, printHistory);
