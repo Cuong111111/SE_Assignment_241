@@ -163,6 +163,63 @@ namespace LoginApi.Services
             TotalPayments = totalPayments
             };
         }
+
+
+        public DetailedMonthlyReport GetDetailMonthlyReport(int year, int month)
+        {
+            // Lấy dữ liệu in từ cache
+            var printHistory = _cache.TryGetValue(PrintHistoryCacheKey, out List<PrintHistory> printData)
+                ? printData.Where(ph => ph.PrintDate.Year == year && ph.PrintDate.Month == month).ToList()
+                : new List<PrintHistory>();
+
+            // Lấy dữ liệu thanh toán từ cache
+            var paymentHistory = _cache.TryGetValue(PaymentHistoryCacheKey, out List<PaymentHistory> paymentData)
+                ? paymentData.Where(ph => ph.PaymentDate.Year == year && ph.PaymentDate.Month == month).ToList()
+                : new List<PaymentHistory>();
+
+            // Chi tiết tổng hợp số trang đã in theo từng máy in
+            var printerSummary = printHistory
+                .GroupBy(ph => ph.PrinterId)
+                .Select(group => new PrinterReport
+                {
+                    PrinterId = group.Key,
+                    PagesPrinted = group.Sum(ph => ph.PagesPrinted)
+                }).ToList();
+
+            // Tổng số tiền thanh toán trong tháng
+            decimal totalPayments = paymentHistory.Sum(ph => ph.Amount);
+
+            // Trả về null nếu không có dữ liệu
+            if (printHistory.Count == 0 && paymentHistory.Count == 0)
+                return null;
+
+            // Tạo báo cáo chi tiết
+            return new DetailedMonthlyReport
+            {
+                Year = year,
+                Month = month,
+                PrintHistory = printHistory.Select(ph => new PrintHistoryDetail
+                {
+                    PrintId = ph.PrintId,
+                    UserId = ph.UserId,
+                    PrinterId = ph.PrinterId,
+                    PagesPrinted = ph.PagesPrinted,
+                    PrintDate = ph.PrintDate,
+                    FileFormats = ph.FileFormats,
+                    Title = ph.Title
+                }).ToList(),
+                PaymentHistory = paymentHistory.Select(ph => new PaymentHistoryDetail
+                {
+                    PaymentId = ph.PaymentId,
+                    UserId = ph.UserId,
+                    Amount = ph.Amount,
+                    PaymentDate = ph.PaymentDate
+                }).ToList(),
+                PrinterReports = printerSummary,
+                TotalPayments = totalPayments
+            };
+        }
+
     }
     
 }
