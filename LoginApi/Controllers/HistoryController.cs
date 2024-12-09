@@ -84,10 +84,21 @@ namespace LoginApi.Controllers
         return Ok(history);
         }
         
+        // [HttpGet("monthly-report")]
+        // public IActionResult GetMonthlyReport([FromQuery] int year, [FromQuery] int month)
+        // {
+        //     var report = _historyService.GetMonthlyReport(year, month);
+        //     if (report == null)
+        //         return NotFound($"No data found for {month:00}-{year}.");
+
+        //     return Ok(report);
+        // }
+        // DetailedMonthlyReport
+
         [HttpGet("monthly-report")]
         public IActionResult GetMonthlyReport([FromQuery] int year, [FromQuery] int month)
         {
-            var report = _historyService.GetMonthlyReport(year, month);
+            var report = _historyService.GetDetailMonthlyReport(year, month);
             if (report == null)
                 return NotFound($"No data found for {month:00}-{year}.");
 
