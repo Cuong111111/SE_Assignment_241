@@ -56,10 +56,11 @@
         <h3>Lịch sử in</h3>
       
         <div *ngFor="let file of filteredHistory" class="file-details">
-          <p><strong>Máy in:</strong> {{ file.printerId }}</p>
-          <p><strong>Ngày in:</strong> {{ file.printDate | date: 'dd/MM/yyyy HH:mm:ss' }}</p>
-          <p><strong>Định dạng file:</strong> {{ file.fileFormats }}</p>
-          <p><strong>Số trang in:</strong> {{ file.pagesPrinted }}</p>
+            <p><strong>Tiêu đề:</strong> {{ file.title }}</p>
+            <p><strong>Định dạng:</strong> {{ file.fileFormats }}</p>
+            <p><strong>Máy in:</strong> {{ file.printerId }}</p>
+            <p><strong>Ngày in:</strong> {{ file.printDate | date: 'dd/MM/yyyy HH:mm:ss' }}</p>
+            <p><strong>Số trang đã in:</strong> {{ file.pagesPrinted }}</p>
         </div>
       
         <div *ngIf="filteredHistory.length === 0" class="no-data">
@@ -73,7 +74,7 @@
     <h2>Lịch sử in</h2>
     <div class="file-item" *ngFor="let file of paginatedHistory">
       <p><strong>Tiêu đề:</strong> {{ file.title }}</p>
-      <p><strong>Định dạng:</strong> {{ file.fileFormatsss }}</p>
+      <p><strong>Định dạng:</strong> {{ file.fileFormats }}</p>
       <p><strong>Máy in:</strong> {{ file.printerId }}</p>
       <p><strong>Ngày in:</strong> {{ file.printDate | date: 'dd/MM/yyyy HH:mm:ss' }}</p>
       <p><strong>Số trang đã in:</strong> {{ file.pagesPrinted }}</p>
