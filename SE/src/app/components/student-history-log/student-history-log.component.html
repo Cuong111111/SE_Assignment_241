@@ -1,1 +1,97 @@
-<p>student-history-log works!</p>
+<div class="search-container">
+    <div class="filter-container">
+        <h3>Bộ lọc lịch sử in</h3>
+      
+        <div class="filter-options">
+          <!-- Printer ID -->
+          <div class="filter-option">
+            <label for="printerId">Máy in</label>
+            <input
+              type="number"
+              id="printerId"
+              [(ngModel)]="searchCriteria.printerId"
+              placeholder="Nhập Printer ID"
+            />
+          </div>
+      
+          <!-- Print Date -->
+          <div class="filter-option">
+            <label for="printDate">Ngày in</label>
+            <input
+              type="date"
+              id="printDate"
+              [(ngModel)]="searchCriteria.printDate"
+            />
+          </div>
+      
+          <!-- File Format -->
+          <div class="filter-option">
+            <label for="fileFormats">Định dạng file</label>
+            <input
+              type="text"
+              id="fileFormats"
+              [(ngModel)]="searchCriteria.fileFormats"
+              placeholder="VD: pdf, docx..."
+            />
+          </div>
+      
+          <!-- Pages Printed -->
+          <div class="filter-option">
+            <label for="pagesPrinted">Số trang in</label>
+            <input
+              type="number"
+              id="pagesPrinted"
+              [(ngModel)]="searchCriteria.pagesPrinted"
+              placeholder="Nhập số trang"
+            />
+          </div>
+        </div>
+      
+        <div class="filter-actions">
+          <button (click)="applyFilters()">Tìm kiếm</button>
+          <button (click)="resetFilters()">Xóa bộ lọc</button>
+        </div>
+      </div>
+      <div class="history-container">
+        <h3>Lịch sử in</h3>
+      
+        <div *ngFor="let file of filteredHistory" class="file-details">
+          <p><strong>Máy in:</strong> {{ file.printerId }}</p>
+          <p><strong>Ngày in:</strong> {{ file.printDate | date: 'dd/MM/yyyy HH:mm:ss' }}</p>
+          <p><strong>Định dạng file:</strong> {{ file.fileFormats }}</p>
+          <p><strong>Số trang in:</strong> {{ file.pagesPrinted }}</p>
+        </div>
+      
+        <div *ngIf="filteredHistory.length === 0" class="no-data">
+          Không có dữ liệu nào phù hợp.
+        </div>
+      </div>
+            
+  
+  
+<div class="history-container">
+    <h2>Lịch sử in</h2>
+    <div class="file-item" *ngFor="let file of paginatedHistory">
+      <p><strong>Tiêu đề:</strong> {{ file.title }}</p>
+      <p><strong>Định dạng:</strong> {{ file.fileFormatsss }}</p>
+      <p><strong>Máy in:</strong> {{ file.printerId }}</p>
+      <p><strong>Ngày in:</strong> {{ file.printDate | date: 'dd/MM/yyyy HH:mm:ss' }}</p>
+      <p><strong>Số trang đã in:</strong> {{ file.pagesPrinted }}</p>
+      <hr />
+    </div>
+  
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <button [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">
+        Trang trước
+      </button>
+      <span>Trang {{ currentPage }} / {{ totalPages }}</span>
+      <button
+        [disabled]="currentPage === totalPages"
+        (click)="goToPage(currentPage + 1)"
+      >
+        Trang sau
+      </button>
+    </div>
+  </div>
+  
