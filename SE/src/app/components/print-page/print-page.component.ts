@@ -187,7 +187,7 @@ export class PrintPageComponent implements OnInit {
     // Dữ liệu cần gửi
     const printData = {
       "printId": 1,               
-      "userId": this.user,               
+      "userId": this.user.id,               
       "printDate": new Date().toISOString(),
       "pagesPrinted": this.pageCount,
       "printerId": this.selectedPrinterId,
