@@ -1,54 +1,36 @@
-.report-container {
-  margin: 20px;
-  font-family: Arial, sans-serif;
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
 }
 
-.report-container h1, .report-container h2, .report-container h3 {
-  color: #333;
-  margin-bottom: 10px;
+h1 {
+  font-family: 'Arial', sans-serif;
+  color: #2c3e50;
 }
 
-.report-container div {
-  margin-bottom: 15px;
+.card {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-.report-container label {
-  display: inline-block;
-  width: 120px;
+.card-header {
+  background-color: #f8f9fa;
   font-weight: bold;
-  color: #555;
 }
 
-.report-container input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 200px;
+.list-group-item {
+  font-size: 14px;
+  color: #34495e;
 }
 
-.report-container button {
-  padding: 10px 15px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.text-success {
+  font-weight: bold;
+  font-size: 1.5em;
 }
 
-.report-container button:hover {
-  background-color: #0056b3;
-}
-
-.report-container ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.report-container ul li {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-}
-
-.report-container ul li:last-child {
-  border-bottom: none;
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
 }

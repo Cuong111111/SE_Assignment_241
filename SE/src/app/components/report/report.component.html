@@ -1,27 +1,93 @@
-<div class="report-container">
-    <h1>Monthly Report</h1>
-    <div>
-      <label for="year">Year:</label>
-      <input type="number" id="year" [(ngModel)]="year">
-    </div>
-    <div>
-      <label for="month">Month:</label>
-      <input type="number" id="month" [(ngModel)]="month">
-    </div>
-    <button (click)="fetchReport()">Fetch Report</button>
-    <div *ngIf="report">
-      <h2>Report for {{ report.month }}/{{ report.year }}</h2>
-      <div>
-        <h3>Printers Used</h3>
-        <ul>
-          <li *ngFor="let printer of report.printerReports">
-            Printer ID: {{ printer.printerId }}, Pages Printed: {{ printer.pagesPrinted }}
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h3>Total Payments: {{ report.totalPayments }}</h3>
+<div class="container mt-5">
+  <h1 class="text-center">Detailed Monthly Report</h1>
+
+  <!-- Input Section -->
+  <div class="row mb-3">
+    <div class="col-md-4 offset-md-4">
+      <div class="input-group">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Year"
+          [(ngModel)]="year"
+        />
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Month"
+          [(ngModel)]="month"
+        />
+        <button class="btn btn-primary" (click)="fetchReport()">Fetch Report</button>
       </div>
     </div>
   </div>
-  
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error" class="alert alert-danger text-center">
+    {{ error }}
+  </div>
+
+  <!-- Report Details -->
+  <div *ngIf="report">
+    <h2 class="text-center">
+      Report for {{ report.year }}-{{ report.month }}
+    </h2>
+
+    <!-- Printer Reports -->
+    <div class="card mt-3">
+      <div class="card-header">Printer Reports</div>
+      <ul class="list-group list-group-flush">
+        <li
+          *ngFor="let printer of report.printerReports"
+          class="list-group-item"
+        >
+          <strong>Printer ID:</strong> {{ printer.printerId }} |
+          <strong>Pages Printed:</strong> {{ printer.pagesPrinted }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Print History -->
+    <div class="card mt-3">
+      <div class="card-header">Print History</div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let history of report.printHistory" class="list-group-item">
+          <strong>Print ID:</strong> {{ history.printId }},
+          <strong>User ID:</strong> {{ history.userId }},
+          <strong>Title:</strong> {{ history.title }},
+          <strong>Pages:</strong> {{ history.pagesPrinted }},
+          <strong>Date:</strong> {{ history.printDate | date:'short' }},
+          <strong>Format:</strong> {{ history.fileFormats }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Payment History -->
+    <div class="card mt-3">
+      <div class="card-header">Payment History</div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let payment of report.paymentHistory" class="list-group-item">
+          <strong>Payment ID:</strong> {{ payment.paymentId }},
+          <strong>User ID:</strong> {{ payment.userId }},
+          <strong>Amount:</strong> ${{ payment.amount }},
+          <strong>Date:</strong> {{ payment.paymentDate | date:'short' }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Total Payments -->
+    <div class="card mt-3">
+      <div class="card-header">Total Payments</div>
+      <div class="card-body">
+        <h4 class="text-success">${{ report.totalPayments }}</h4>
+      </div>
+    </div>
+  </div>
+</div>
