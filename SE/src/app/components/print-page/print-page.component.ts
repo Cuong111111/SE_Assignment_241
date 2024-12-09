@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { renderAsync as DocxPreview } from 'docx-preview';
 import { PDFDocument } from 'pdf-lib';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-print-page',
   standalone: true,
@@ -15,14 +16,20 @@ import { PDFDocument } from 'pdf-lib';
 })
 export class PrintPageComponent implements OnInit {
   printers: string[] = []; // Danh sách tên máy in đang hoạt động
-
+  user: any;
   constructor(
     private http: HttpClient,  // Inject HttpClient
-    private sanitizer: DomSanitizer  // Inject DomSanitizer
+    private sanitizer: DomSanitizer,  // Inject DomSanitizer
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.loadActivePrinters(); // Gọi API khi component được khởi tạo
+      this.user = this.userService.getUser();
+      if (!this.user) {
+        alert('Không tìm thấy thông tin người dùng. Vui lòng đăng nhập lại.');
+        return;
+      }
   }
 
   // Hàm gọi API lấy trạng thái máy in hoạt động
@@ -180,13 +187,14 @@ export class PrintPageComponent implements OnInit {
     // Dữ liệu cần gửi
     const printData = {
       "printId": 1,               
-      "userId": 1,               
+      "userId": this.user,               
       "printDate": new Date().toISOString(),
-      "pagesPrint": this.pageCount,
+      "pagesPrinted": this.pageCount,
       "printerId": this.selectedPrinterId,
       "fileFormats": this.selectedFileName?.split('.').pop(),
       "title": this.selectedFileName
     };
+    console.log(printData);
   
     // Gửi yêu cầu POST
     const url = 'http://localhost:5057/api/history/print';
