@@ -1,93 +1,120 @@
-<div class="container mt-5">
-  <h1 class="text-center">Detailed Monthly Report</h1>
+<h1 class="text-center">Báo cáo theo tháng</h1>
 
-  <!-- Input Section -->
-  <div class="row mb-3">
-    <div class="col-md-4 offset-md-4">
-      <div class="input-group">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Year"
-          [(ngModel)]="year"
-        />
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Month"
-          [(ngModel)]="month"
-        />
-        <button class="btn btn-primary" (click)="fetchReport()">Fetch Report</button>
-      </div>
+<!-- Input Section -->
+<div class="row">
+  <div class="col">
+    <div class="input-group">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Năm"
+        [(ngModel)]="year"
+      />
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Tháng"
+        [(ngModel)]="month"
+      />
+      <button class="btn btn-primary" (click)="fetchReport()">
+        Tạo báo cáo
+      </button>
     </div>
   </div>
+</div>
 
-  <!-- Loading Spinner -->
-  <div *ngIf="isLoading" class="text-center">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+<!-- Loading Spinner -->
+<div *ngIf="isLoading" class="text-center">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<!-- Error Message -->
+<div *ngIf="error" class="alert alert-danger text-center">
+  {{ error }}
+</div>
+
+<!-- Report Details -->
+<div *ngIf="report" class="container">
+  <h2 class="text-center">
+    Bảng báo cáo cho {{ report.month }}/{{ report.year }}
+  </h2>
+
+  <!-- Printer Reports -->
+  <div class="table-printer">
+    <div class="card-header">Máy in đã sử dụng</div>
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th>ID máy in</th>
+          <th>tổng số trang in</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let printer of report.printerReports">
+          <td>{{ printer.printerId }}</td>
+          <td>{{ printer.pagesPrinted }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <!-- Error Message -->
-  <div *ngIf="error" class="alert alert-danger text-center">
-    {{ error }}
+  <!-- Print History -->
+  <div class="tables">
+    <div class="card-header">Lịch sử in</div>
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th>ID in</th>
+          <th>ID sinh viên</th>
+          <th>Tên file</th>
+          <th>Số trang in</th>
+          <th>Ngày in</th>
+          <th>Định dạng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let history of report.printHistory">
+          <td>{{ history.printId }}</td>
+          <td>{{ history.userId }}</td>
+          <td>{{ history.title }}</td>
+          <td>{{ history.pagesPrinted }}</td>
+          <td>{{ history.printDate | date : "short" }}</td>
+          <td>{{ history.fileFormats }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <!-- Report Details -->
-  <div *ngIf="report">
-    <h2 class="text-center">
-      Report for {{ report.year }}-{{ report.month }}
-    </h2>
+  <!-- Payment History -->
+  <div class="tables">
+    <div class="card-header">Lịch sử thanh toán</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Mã thanh toán</th>
+          <th>ID sinh viên</th>
+          <th>Số tiền</th>
+          <th>Ngày thanh toán</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of report.paymentHistory">
+          <td>{{ payment.paymentId }}</td>
+          <td>{{ payment.userId }}</td>
+          <td>{{ payment.amount }}</td>
+          <td>{{ payment.paymentDate | date : "short" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <!-- Printer Reports -->
-    <div class="card mt-3">
-      <div class="card-header">Printer Reports</div>
-      <ul class="list-group list-group-flush">
-        <li
-          *ngFor="let printer of report.printerReports"
-          class="list-group-item"
-        >
-          <strong>Printer ID:</strong> {{ printer.printerId }} |
-          <strong>Pages Printed:</strong> {{ printer.pagesPrinted }}
-        </li>
-      </ul>
-    </div>
-
-    <!-- Print History -->
-    <div class="card mt-3">
-      <div class="card-header">Print History</div>
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let history of report.printHistory" class="list-group-item">
-          <strong>Print ID:</strong> {{ history.printId }},
-          <strong>User ID:</strong> {{ history.userId }},
-          <strong>Title:</strong> {{ history.title }},
-          <strong>Pages:</strong> {{ history.pagesPrinted }},
-          <strong>Date:</strong> {{ history.printDate | date:'short' }},
-          <strong>Format:</strong> {{ history.fileFormats }}
-        </li>
-      </ul>
-    </div>
-
-    <!-- Payment History -->
-    <div class="card mt-3">
-      <div class="card-header">Payment History</div>
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let payment of report.paymentHistory" class="list-group-item">
-          <strong>Payment ID:</strong> {{ payment.paymentId }},
-          <strong>User ID:</strong> {{ payment.userId }},
-          <strong>Amount:</strong> ${{ payment.amount }},
-          <strong>Date:</strong> {{ payment.paymentDate | date:'short' }}
-        </li>
-      </ul>
-    </div>
-
-    <!-- Total Payments -->
-    <div class="card mt-3">
-      <div class="card-header">Total Payments</div>
-      <div class="card-body">
-        <h4 class="text-success">${{ report.totalPayments }}</h4>
-      </div>
+  <!-- Total Payments -->
+  <div class="card mt-3" style="width: 40%; margin: 0 auto">
+    <div class="card-header">Tổng số tiền</div>
+    <div class="card-body">
+      <p class="text-success">${{ report.totalPayments }}</p>
     </div>
   </div>
 </div>
