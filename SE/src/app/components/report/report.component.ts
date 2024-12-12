@@ -66,6 +66,7 @@ export class ReportComponent  {
       error: () => {
         this.error = 'Failed to load report. Please try again later.';
         this.isLoading = false;
+        this.report = null;
       },
     });
   }
