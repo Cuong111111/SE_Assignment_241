@@ -51,15 +51,13 @@ cd SE_Assignment_241
 3) Install dependencies:
 - For web application:
 npm install
-- For mobile application:
-flutter pub get
+
 
 4) Run the application:
-- Web:
-npm start
+- Run Back-end: npm start
+- Web: ng serve
 
-- Mobile:
-flutter run
+
 ***************************************************************
 
 ***Usage
