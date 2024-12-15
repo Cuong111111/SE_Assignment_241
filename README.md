@@ -82,7 +82,8 @@ Documentation: Refer to the detailed documentation in the "docs" folder for syst
 ***ACCOUNT LOGIN
 account: example@hcmut.edu.vn
 password: password123
-role: SPSO
+role: SPSO.
+
 account: example2@hcmut.edu.vn
 password: password123
 role: student
