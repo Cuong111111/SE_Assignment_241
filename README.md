@@ -54,7 +54,7 @@ npm install
 
 
 4) Run the application:
-- Run Back-end: npm start
+- Run Back-end: dotnet run
 - Web: ng serve
 
 
@@ -77,3 +77,12 @@ We welcome contributions! Please fork the repository and create a pull request w
 ***Links and Resources
 Prototype: Figma Design
 Documentation: Refer to the detailed documentation in the "docs" folder for system requirements and design models.
+***************************************************************
+
+***ACCOUNT LOGIN
+account: example@hcmut.edu.vn
+password: password123
+role: SPSO
+account: example2@hcmut.edu.vn
+password: password123
+role: student
