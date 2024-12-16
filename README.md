@@ -55,17 +55,12 @@ npm install
 
 4) Run the application:
 - Run Back-end:
-
- cd LoginApi
-
- dotnet run
-- Web:
-
- cd SE
- 
- npm install ( for install depnediencies )
-
- ng serve
++ cd LoginApi
++ dotnet run (In this project we use Framework: 'Microsoft.NETCore.App', version '8.0.0' so it maybe cause error when run, you should change to your version in file LoginApi.csproj)
+- Run Web:
++ cd SE
++ npm install ( for install depnediencies )
++ ng serve
 
 
 ***************************************************************
@@ -91,10 +86,10 @@ Documentation: Refer to the detailed documentation in the "docs" folder for syst
 
 ***ACCOUNT LOGIN
 
-account: example@hcmut.edu.vn
-password: password123
-role: SPSO.
+- account: example@hcmut.edu.vn
+- password: password123
+- role: SPSO.
 
-account: example2@hcmut.edu.vn
-password: password123
-role: student
+- account: example2@hcmut.edu.vn
+- password: password123
+- role: student.
