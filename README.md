@@ -55,12 +55,17 @@ npm install
 
 4) Run the application:
 - Run Back-end:
-- cd LoginApi
--   dotnet run
+
+ cd LoginApi
+
+ dotnet run
 - Web:
-- cd SE
-- npm install ( for install depnediencies )
-- ng serve
+
+ cd SE
+ 
+ npm install ( for install depnediencies )
+
+ ng serve
 
 
 ***************************************************************
